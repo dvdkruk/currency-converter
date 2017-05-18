@@ -18,7 +18,11 @@ public class CurrencyConverterCLI {
     /**
      * Message shown when no console arguments are given.
      */
-    public static final String STARTUP_MESSAGE = "Commands:\n- <fromCurrency> <amount> in <toCurrency> -> convert amounts between currencies, for example \"AUD 101.25 in USD\".\n- exit -> exit the program";
+    public static final String STARTUP_MESSAGE = "Currency Converter\n" +
+            "Commands:\n" +
+            "- <fromCurrency> <amount> in <toCurrency> -> convert amounts between currencies, for example \"AUD 101.25 in USD\".\n" +
+            "t -> toggle between rounding modes, default: HALF_UP\n" +
+            "- exit -> exit the program";
 
     /**
      * Default decimal format with 2 decimals. Used for most currencies, except JPY {@code jpyFormat}.

@@ -126,14 +126,14 @@ public class CurrencyConverter {
 
     private void addCrossConversion(String fromCurr, String viaCurr, String toCurr) {
         this.crossConversionTable.put(fromCurr + toCurr, viaCurr);
-        // reflectional entry
+        // reflectional/mirrored entry
         this.crossConversionTable.put(toCurr + fromCurr, viaCurr);
     }
 
     private void addConversionRate(String fromCurr, String toCurr, BigDecimal rate) {
         this.conversionTable.put(fromCurr + toCurr, rate);
         //add inverted rate
-        this.conversionTable.put(toCurr + fromCurr, new BigDecimal("1").divide(rate, 99, RoundingMode.HALF_UP));
+        this.conversionTable.put(toCurr + fromCurr, new BigDecimal("1").divide(rate, 99, RoundingMode.HALF_EVEN));
     }
 
 }

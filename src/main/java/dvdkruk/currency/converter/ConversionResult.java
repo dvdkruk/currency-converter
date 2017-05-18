@@ -5,22 +5,27 @@ import java.math.BigDecimal;
 /**
  * Data holder for a conversion result from a {@see ConversionRequest}.
  */
-class ConversionResult {
+public class ConversionResult {
 
     private final BigDecimal amount;
 
-    ConversionResult(BigDecimal amount) {
+    public ConversionResult(BigDecimal amount) {
         this.amount = amount;
     }
 
     /**
      * @return {@code true} when this result is successful conversion result.
      */
-    boolean isValid() {
+    public boolean isValid() {
         return amount != null;
     }
 
-    BigDecimal getAmount() {
+    /**
+     * Returns the result amount of the conversion when the result is valid.
+     *
+     * @return the result amount of the conversion when the result is valid
+     */
+    public BigDecimal getAmount() {
         return amount;
     }
 }

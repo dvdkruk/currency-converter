@@ -8,7 +8,7 @@ import java.util.Currency;
  */
 public class ConversionRequest {
 
-    public static final String IN_KEYWORD = "in";
+    private static final String IN_KEYWORD = "in";
 
     private final BigDecimal amount;
 
@@ -72,17 +72,32 @@ public class ConversionRequest {
      * @return a {@code String} representing the request.
      */
     public String toString() {
-        return String.format("%s %s in %s", this.fromCurrency, this.amount.toString(), this.toCurrency);
+        return String.format("%s %s %s %s", this.fromCurrency, this.amount.toString(), IN_KEYWORD, this.toCurrency);
     }
 
+    /**
+     * Request amount for conversion.
+     *
+     * @return the amount requested for conversion
+     */
     public BigDecimal getAmount() {
         return amount;
     }
 
+    /**
+     * Currency code of the request amount.
+     *
+     * @return the currency code of the request amount.
+     */
     public String getFromCurrency() {
         return fromCurrency;
     }
 
+    /**
+     * Target currency code for conversion.
+     *
+     * @return the target currency code.
+     */
     public String getToCurrency() {
         return toCurrency;
     }
