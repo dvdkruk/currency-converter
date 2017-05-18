@@ -21,7 +21,6 @@ public class CurrencyConverterCLI {
     public static final String STARTUP_MESSAGE = "Currency Converter\n" +
             "Commands:\n" +
             "- <fromCurrency> <amount> in <toCurrency> -> convert amounts between currencies, for example \"AUD 101.25 in USD\".\n" +
-            "t -> toggle between rounding modes, default: HALF_UP\n" +
             "- exit -> exit the program";
 
     /**
