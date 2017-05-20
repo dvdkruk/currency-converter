@@ -1,12 +1,16 @@
-package dvdkruk.currency.converter;
+package dvdkruk.currency.converter.messages;
 
 import java.math.BigDecimal;
 import java.util.Currency;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Data holder and helper for conversion requests.
  */
 public class ConversionRequest {
+
+    private static final Logger LOGGER = Logger.getLogger(ConversionRequest.class.getName());
 
     private static final String IN_KEYWORD = "in";
 
@@ -26,9 +30,9 @@ public class ConversionRequest {
     }
 
     /**
-     * Parses the given args into a {@code ConversionRequest} object;
+     * Parses the [@code args} argument into a {@code ConversionRequest} object;
      *
-     * @param args given input args
+     * @param args provided messages args
      * @return a {@code ConversionRequest} object
      */
     public static ConversionRequest parse(String[] args) {
@@ -36,18 +40,16 @@ public class ConversionRequest {
         String fromCurrency = null;
         String toCurrency = null;
 
-        if (args.length == 4) {
-            if (args[2].equals(IN_KEYWORD)) {
-                fromCurrency = args[0];
-                toCurrency = args[3];
-                try {
-                    amount = new BigDecimal(args[1]);
-                } catch (NumberFormatException nfe) {
-                    //invalid request
-                }
+        if (args.length == 4 && IN_KEYWORD.equals(args[2])) {
+            fromCurrency = args[0];
+            toCurrency = args[3];
+            try {
+                amount = new BigDecimal(args[1]);
+            } catch (NumberFormatException e) {
+                //invalid request
+                LOGGER.log(Level.FINEST, args[1] + " cannot be parsed to a " + BigDecimal.class, e);
             }
         }
-
         return new ConversionRequest(amount, fromCurrency, toCurrency);
     }
 
@@ -55,8 +57,9 @@ public class ConversionRequest {
         try {
             Currency.getInstance(currencyCode);
             return true;
-        } catch (NullPointerException | IllegalArgumentException npe) {
+        } catch (NullPointerException | IllegalArgumentException e) {
             // null or invalid currency code
+            LOGGER.log(Level.FINEST, currencyCode + " is not a supported ISO 4217 currency code", e);
         }
         return false;
     }
@@ -71,9 +74,11 @@ public class ConversionRequest {
     /**
      * @return a {@code String} representing the request.
      */
+    @Override
     public String toString() {
         return String.format("%s %s %s %s", this.fromCurrency, this.amount.toString(), IN_KEYWORD, this.toCurrency);
     }
+
 
     /**
      * Request amount for conversion.

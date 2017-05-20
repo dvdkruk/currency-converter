@@ -1,12 +1,10 @@
 package dvdkruk.currency.converter;
 
+import dvdkruk.currency.converter.messages.ConversionRequest;
 import junit.framework.TestCase;
 
 import java.math.BigDecimal;
 
-/**
- * Created by damiaan on 17/05/2017.
- */
 public class ConversionRequestTest extends TestCase {
 
     public void testAllNullArguments() {

@@ -1,15 +1,14 @@
 package dvdkruk.currency.converter;
 
+import dvdkruk.currency.converter.messages.ConversionRequest;
+import dvdkruk.currency.converter.messages.ConversionResult;
 import junit.framework.TestCase;
 
 import java.math.BigDecimal;
 
-/**
- * Created by damia on 18/05/2017.
- */
 public class CurrencyConverterTest extends TestCase {
 
-    private CurrencyConverter converter = new CurrencyConverter();
+    private final CurrencyConverter converter = new CurrencyConverter();
 
     public void testAudToUsd() {
         ConversionResult result = converter.calculate(new ConversionRequest(new BigDecimal("1"), "AUD", "USD"));
@@ -64,9 +63,6 @@ public class CurrencyConverterTest extends TestCase {
     public void testAudToJpy() {
         ConversionResult result = converter.calculate(new ConversionRequest(new BigDecimal("1"), "AUD", "JPY"));
         assertEquals(new BigDecimal("100.410145"), result.getAmount());
-    }
-
-    public void testConvert() {
     }
 
 }

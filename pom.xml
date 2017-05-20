@@ -35,7 +35,7 @@
                         <index>true</index>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>dvdkruk.currency.converter.CurrencyConverterCLI</mainClass>
+                            <mainClass>dvdkruk.currency.converter.cli.CurrencyConverterCLI</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -1,4 +1,4 @@
-package dvdkruk.currency.converter;
+package dvdkruk.currency.converter.messages;
 
 import java.math.BigDecimal;
 
@@ -17,7 +17,7 @@ public class ConversionResult {
      * @return {@code true} when this result is successful conversion result.
      */
     public boolean isValid() {
-        return amount != null;
+        return getAmount() != null;
     }
 
     /**

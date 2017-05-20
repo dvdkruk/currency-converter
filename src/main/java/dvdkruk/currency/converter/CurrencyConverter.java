@@ -1,5 +1,8 @@
 package dvdkruk.currency.converter;
 
+import dvdkruk.currency.converter.messages.ConversionRequest;
+import dvdkruk.currency.converter.messages.ConversionResult;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
@@ -104,7 +107,7 @@ public class CurrencyConverter {
      * @return converted amount in given toCurrency from given amount in given fromCurrency,
      * or {@code null} no conversion between the currencies are available.
      */
-    public BigDecimal convert(String fromCurrency, String toCurrency, BigDecimal amount) {
+    private BigDecimal convert(String fromCurrency, String toCurrency, BigDecimal amount) {
 
         // look up direct and inverted rates
         String conversionKey = fromCurrency + toCurrency;

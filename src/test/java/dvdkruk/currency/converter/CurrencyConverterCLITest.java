@@ -1,5 +1,6 @@
 package dvdkruk.currency.converter;
 
+import dvdkruk.currency.converter.cli.CurrencyConverterCLI;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -26,42 +27,42 @@ public class CurrencyConverterCLITest
     }
 
     public void testEmptyInput() {
-        CurrencyConverterCLI convCli = new CurrencyConverterCLI();
-        assertEquals(CurrencyConverterCLI.INVALID_INPUT_FORMAT_MESSAGE, convCli.process(new String[]{}));
+        CurrencyConverterCLI cli = new CurrencyConverterCLI();
+        assertEquals("Invalid message format, expected format is \"<fromCurrency> <amount> in <toCurrency>\" for example \"AUD 101.25 in USD\"", cli.process(new String[]{}));
     }
 
     public void testWrongInput() {
-        CurrencyConverterCLI convCli = new CurrencyConverterCLI();
-        assertEquals(CurrencyConverterCLI.INVALID_INPUT_FORMAT_MESSAGE, convCli.process(new String[]{"EURO", "TEST", "in", "AUD"}));
+        CurrencyConverterCLI cli = new CurrencyConverterCLI();
+        assertEquals("Invalid message format, expected format is \"<fromCurrency> <amount> in <toCurrency>\" for example \"AUD 101.25 in USD\"", cli.process(new String[]{"EURO", "TEST", "in", "AUD"}));
     }
 
     public void testAudToUsd() {
-        CurrencyConverterCLI convCli = new CurrencyConverterCLI();
-        assertEquals("AUD 100.00 = USD 83.71", convCli.process(new String[]{"AUD", "100.00", "in", "USD"}));
+        CurrencyConverterCLI cli = new CurrencyConverterCLI();
+        assertEquals("AUD 100.00 = USD 83.71", cli.process(new String[]{"AUD", "100.00", "in", "USD"}));
     }
 
     public void testAudToAud() {
-        CurrencyConverterCLI convCli = new CurrencyConverterCLI();
-        assertEquals("AUD 100.00 = AUD 100.00", convCli.process(new String[]{"AUD", "100.00", "in", "AUD"}));
+        CurrencyConverterCLI cli = new CurrencyConverterCLI();
+        assertEquals("AUD 100.00 = AUD 100.00", cli.process(new String[]{"AUD", "100.00", "in", "AUD"}));
     }
 
     public void testAudToDkk() {
-        CurrencyConverterCLI convCli = new CurrencyConverterCLI();
-        assertEquals("AUD 100.00 = DKK 505.76", convCli.process(new String[]{"AUD", "100.00", "in", "DKK"}));
+        CurrencyConverterCLI cli = new CurrencyConverterCLI();
+        assertEquals("AUD 100.00 = DKK 505.76", cli.process(new String[]{"AUD", "100.00", "in", "DKK"}));
     }
 
     public void testJpyToUsd() {
-        CurrencyConverterCLI convCli = new CurrencyConverterCLI();
-        assertEquals("JPY 100 = USD 0.83", convCli.process(new String[]{"JPY", "100", "in", "USD"}));
+        CurrencyConverterCLI cli = new CurrencyConverterCLI();
+        assertEquals("JPY 100 = USD 0.83", cli.process(new String[]{"JPY", "100", "in", "USD"}));
     }
 
-    public void testConnotFindRate() {
-        CurrencyConverterCLI convCli = new CurrencyConverterCLI();
-        assertEquals("Unable to find rate for KRW/FJD", convCli.process(new String[]{"KRW", "1000.00", "in", "FJD"}));
+    public void testCannotFindRate() {
+        CurrencyConverterCLI cli = new CurrencyConverterCLI();
+        assertEquals("Unable to find rate for KRW/FJD", cli.process(new String[]{"KRW", "1000.00", "in", "FJD"}));
     }
 
     public void testLowerCaseCurr() {
-        CurrencyConverterCLI convCli = new CurrencyConverterCLI();
-        assertEquals(CurrencyConverterCLI.INVALID_INPUT_FORMAT_MESSAGE, convCli.process(new String[]{"krw", "1000.00", "in", "FJD"}));
+        CurrencyConverterCLI cli = new CurrencyConverterCLI();
+        assertEquals("Invalid message format, expected format is \"<fromCurrency> <amount> in <toCurrency>\" for example \"AUD 101.25 in USD\"", cli.process(new String[]{"krw", "1000.00", "in", "FJD"}));
     }
 }
