@@ -1,6 +1,5 @@
-package dvdkruk.currency.converter;
+package dvdkruk.currency.converter.cli;
 
-import dvdkruk.currency.converter.cli.CurrencyConverterCLI;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;

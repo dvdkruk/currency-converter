@@ -8,7 +8,7 @@ import java.io.Console;
 import java.text.DecimalFormat;
 import java.util.logging.Logger;
 
-public class CurrencyConverterCLI {
+class CurrencyConverterCLI {
 
     private static final Logger LOGGER = Logger.getLogger(CurrencyConverterCLI.class.getName());
 
@@ -43,7 +43,7 @@ public class CurrencyConverterCLI {
      */
     private final CurrencyConverter converter = new CurrencyConverter();
 
-    public CurrencyConverterCLI() {
+    CurrencyConverterCLI() {
         // init default decimal format
         this.defaultFormat.setMaximumFractionDigits(2);
         this.defaultFormat.setMinimumFractionDigits(2);
@@ -103,7 +103,7 @@ public class CurrencyConverterCLI {
      * @param args messages arguments
      * @return a {@code String} messages with the result
      */
-    public String process(String[] args) {
+    String process(String[] args) {
         ConversionRequest request = ConversionRequest.parse(args);
 
         if (request.isValid()) {

@@ -2,6 +2,7 @@ package dvdkruk.currency.converter.messages;
 
 import java.math.BigDecimal;
 import java.util.Currency;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -71,14 +72,33 @@ public class ConversionRequest {
         return valid;
     }
 
-    /**
-     * @return a {@code String} representing the request.
-     */
     @Override
     public String toString() {
         return String.format("%s %s %s %s", this.fromCurrency, this.amount.toString(), IN_KEYWORD, this.toCurrency);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount, fromCurrency, toCurrency);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        ConversionRequest request = (ConversionRequest) obj;
+        return Objects.equals(amount, request.amount) &&
+                Objects.equals(fromCurrency, request.fromCurrency) &&
+                Objects.equals(toCurrency, request.toCurrency);
+    }
 
     /**
      * Request amount for conversion.
