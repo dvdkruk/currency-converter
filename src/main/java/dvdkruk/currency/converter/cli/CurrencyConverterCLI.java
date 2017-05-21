@@ -25,7 +25,7 @@ class CurrencyConverterCLI {
     /**
      * Message shown when no console arguments are given.
      */
-    private static final String STARTUP_MESSAGE = "Currency Converter\n" +
+    private static final String STARTUP_MESSAGE = "Currency Converter Program\n" +
             "Commands:\n" +
             "- <fromCurrency> <amount> in <toCurrency> -> convert amounts between currencies, for example \"AUD 101.25 in USD\".\n" +
             "- exit -> exit the program";
@@ -75,7 +75,7 @@ class CurrencyConverterCLI {
             do {
                 String inputArgs = cli.readNextInput();
                 if (inputArgs == null) {
-                    console.writer().println("Invalid messages");
+                    console.writer().println("empty input");
                 } else if ("exit".equals(inputArgs)) {
                     exit = true;
                 } else {
